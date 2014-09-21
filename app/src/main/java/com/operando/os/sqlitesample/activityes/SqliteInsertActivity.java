@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.operando.os.sqlitesample.R;
 import com.operando.os.sqlitesample.databases.SQLiteSampleHelper;
-import com.operando.os.sqlitesample.databases.SampleTable;
+import com.operando.os.sqlitesample.databases.User;
 
 
 public class SqliteInsertActivity extends Activity {
@@ -40,7 +40,7 @@ public class SqliteInsertActivity extends Activity {
         try {
             sb.beginTransaction();
             for (int i = 0; i < DATASIZE; i++) {
-                sb.execSQL("INSERT INTO " + SampleTable.SAMPLE_TABLE_NAME + " values(\"test" + i + "\");");
+                sb.execSQL("INSERT INTO " + User.TABLE_NAME + " (" + User.UserColumns.ADDRESS + ") VALUES(\"test" + i + "@test.com\");");
             }
             Log.d(TAG, (System.currentTimeMillis() - start) + "ms");
             Log.d(TAG, "onExecSQL===================================================");
@@ -59,8 +59,8 @@ public class SqliteInsertActivity extends Activity {
         ContentValues cv = new ContentValues();
         try {
             for (int i = 0; i < DATASIZE; i++) {
-                cv.put(SampleTable.SAMPLE_TEST_COLUMN, "test" + i);
-                sb.insertOrThrow(SampleTable.SAMPLE_TABLE_NAME, null, cv);
+                cv.put(User.UserColumns.ADDRESS, "test" + i + "@test.com");
+                sb.insertOrThrow(User.TABLE_NAME, null, cv);
             }
             Log.d(TAG, (System.currentTimeMillis() - start) + "ms");
             Log.d(TAG, "onInsert===================================================");
@@ -81,8 +81,8 @@ public class SqliteInsertActivity extends Activity {
         try {
             sb.beginTransaction();
             for (int i = 0; i < DATASIZE; i++) {
-                cv.put(SampleTable.SAMPLE_TEST_COLUMN, "test" + i);
-                sb.insertOrThrow(SampleTable.SAMPLE_TABLE_NAME, null, cv);
+                cv.put(User.UserColumns.ADDRESS, "test" + i + "@test.com");
+                sb.insertOrThrow(User.TABLE_NAME, null, cv);
             }
             sb.setTransactionSuccessful();
             Log.d(TAG, (System.currentTimeMillis() - start) + "ms");
@@ -101,11 +101,11 @@ public class SqliteInsertActivity extends Activity {
 
         long start = System.currentTimeMillis();
 
-        SQLiteStatement stat = sb.compileStatement("INSERT INTO " + SampleTable.SAMPLE_TABLE_NAME + " VALUES(?)");
+        SQLiteStatement stat = sb.compileStatement("INSERT INTO " + User.TABLE_NAME + "(" + User.UserColumns.ADDRESS + ") VALUES(?)");
         try {
             sb.beginTransaction();
             for (int i = 0; i < DATASIZE; i++) {
-                stat.bindString(1, "test" + i);
+                stat.bindString(1, "test" + i + "@test.com");
                 stat.executeInsert();
             }
             sb.setTransactionSuccessful();

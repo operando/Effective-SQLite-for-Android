@@ -10,7 +10,7 @@
 
     <Button
         android:onClick="onClick"
-        android:text="@string/hello_world"
+        android:text="Test Select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
