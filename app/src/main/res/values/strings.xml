@@ -11,4 +11,6 @@
     <string name="mode_activity_sqlite_select">SQLite Select</string>
     <string name="mode_activity_sqlite_insert">SQLite Insert</string>
     <string name="mode_activity_database_utils">DatabaseUtils</string>
+
+    <string name="database_utils_dump_cursor">Dump Cursor</string>
 </resources>
