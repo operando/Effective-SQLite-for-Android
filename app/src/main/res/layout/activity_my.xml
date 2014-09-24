@@ -10,6 +10,13 @@
     tools:context=".MyActivity">
 
 
+    <CheckBox
+        android:id="@+id/in_memory"
+        android:text="In Memory"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/execsql"
         android:onClick="onExecSQL"

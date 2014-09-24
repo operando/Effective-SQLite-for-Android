@@ -15,7 +15,11 @@ public class SQLiteSampleHelper extends SQLiteOpenHelper {
 
 
     public SQLiteSampleHelper(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+        this(context, false);
+    }
+
+    public SQLiteSampleHelper(Context context, boolean inMemory) {
+        super(context, inMemory ? null : DB_NAME, null, DB_VERSION);
     }
 
     @Override

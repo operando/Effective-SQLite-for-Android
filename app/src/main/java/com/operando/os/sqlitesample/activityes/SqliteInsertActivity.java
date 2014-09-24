@@ -8,10 +8,14 @@ import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import com.operando.os.sqlitesample.R;
 import com.operando.os.sqlitesample.databases.SQLiteSampleHelper;
 import com.operando.os.sqlitesample.databases.User;
+
+import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 
 
 public class SqliteInsertActivity extends Activity {
@@ -19,10 +23,13 @@ public class SqliteInsertActivity extends Activity {
     private static final String TAG = "Shibuya Java";
     private static final int DATASIZE = 50000;
 
+    private boolean inMemory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+        ButterKnife.inject(this);
 
 //        NO！
 //        String path = "/data/data/" + this.getPackageName() + "/file.db";
@@ -32,8 +39,13 @@ public class SqliteInsertActivity extends Activity {
 //        SQLiteDatabase db = openOrCreateDatabase("app.db", Context.MODE_PRIVATE, null);
     }
 
+    @OnCheckedChanged(R.id.in_memory)
+    void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        inMemory = isChecked;
+    }
+
     public void onExecSQL(View v) {
-        SQLiteSampleHelper ssh = new SQLiteSampleHelper(this);
+        SQLiteSampleHelper ssh = new SQLiteSampleHelper(this, inMemory);
         SQLiteDatabase sb = ssh.getWritableDatabase();
 
         long start = System.currentTimeMillis();
@@ -52,7 +64,7 @@ public class SqliteInsertActivity extends Activity {
     }
 
     public void onInsert(View v) {
-        SQLiteSampleHelper ssh = new SQLiteSampleHelper(this);
+        SQLiteSampleHelper ssh = new SQLiteSampleHelper(this, inMemory);
         SQLiteDatabase sb = ssh.getWritableDatabase();
 
         long start = System.currentTimeMillis();
@@ -72,7 +84,7 @@ public class SqliteInsertActivity extends Activity {
     }
 
     public void onTransaction(View v) {
-        SQLiteSampleHelper ssh = new SQLiteSampleHelper(this);
+        SQLiteSampleHelper ssh = new SQLiteSampleHelper(this, inMemory);
         SQLiteDatabase sb = ssh.getWritableDatabase();
 
         long start = System.currentTimeMillis();
@@ -96,7 +108,7 @@ public class SqliteInsertActivity extends Activity {
     }
 
     public void onCompileStatement(View v) {
-        SQLiteSampleHelper ssh = new SQLiteSampleHelper(this);
+        SQLiteSampleHelper ssh = new SQLiteSampleHelper(this, inMemory);
         SQLiteDatabase sb = ssh.getWritableDatabase();
 
         long start = System.currentTimeMillis();
