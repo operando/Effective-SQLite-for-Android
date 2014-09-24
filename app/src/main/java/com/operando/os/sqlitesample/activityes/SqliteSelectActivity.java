@@ -1,6 +1,8 @@
 package com.operando.os.sqlitesample.activityes;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -11,6 +13,7 @@ import android.view.View;
 import com.operando.os.sqlitesample.R;
 import com.operando.os.sqlitesample.databases.SQLiteSampleHelper;
 import com.operando.os.sqlitesample.databases.User;
+import com.operando.os.sqlitesample.model.Mode;
 
 
 public class SqliteSelectActivity extends Activity {
@@ -22,6 +25,11 @@ public class SqliteSelectActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sqlite_select);
     }
+
+    public static Mode createMode(Context context) {
+        return new Mode(new Intent(context, SqliteSelectActivity.class), context.getString(R.string.mode_activity_sqlite_select));
+    }
+
 
     public void onClick(View v) {
         testSelect();

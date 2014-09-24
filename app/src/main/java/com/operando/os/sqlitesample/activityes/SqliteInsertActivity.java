@@ -2,6 +2,7 @@ package com.operando.os.sqlitesample.activityes;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -13,6 +14,7 @@ import android.widget.CompoundButton;
 import com.operando.os.sqlitesample.R;
 import com.operando.os.sqlitesample.databases.SQLiteSampleHelper;
 import com.operando.os.sqlitesample.databases.User;
+import com.operando.os.sqlitesample.model.Mode;
 
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
@@ -38,6 +40,11 @@ public class SqliteInsertActivity extends Activity {
 //        NO！
 //        SQLiteDatabase db = openOrCreateDatabase("app.db", Context.MODE_PRIVATE, null);
     }
+
+    public static Mode createMode(Context context) {
+        return new Mode(new Intent(context, SqliteInsertActivity.class), context.getString(R.string.mode_activity_sqlite_insert));
+    }
+
 
     @OnCheckedChanged(R.id.in_memory)
     void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -129,10 +136,5 @@ public class SqliteInsertActivity extends Activity {
             sb.close();
             ssh.close();
         }
-    }
-
-    public void onIntent(View v) {
-        Intent i = new Intent(this, SqliteSelectActivity.class);
-        startActivity(i);
     }
 }

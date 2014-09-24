@@ -5,6 +5,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_sqlite_select">SqliteSelectActivity</string>
-    <string name="title_activity_mode_select">ModeSelectActivity</string>
+    <string name="title_activity_database_utils">DatabaseUtilsActivity</string>
+    <string name="title_activity_select_mode">SelectModeActivity</string>
 
+    <string name="mode_activity_sqlite_select">SQLite Select</string>
+    <string name="mode_activity_sqlite_insert">SQLite Insert</string>
+    <string name="mode_activity_database_utils">DatabaseUtils</string>
 </resources>
