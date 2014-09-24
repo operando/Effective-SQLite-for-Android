@@ -21,14 +21,10 @@ public class SqliteSelectActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sqlite_select);
+    }
 
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                testSelect();
-                return null;
-            }
-        }.execute();
+    public void onClick(View v) {
+        testSelect();
     }
 
     private void testSelect() {
@@ -53,10 +49,5 @@ public class SqliteSelectActivity extends Activity {
                 return null;
             }
         }.execute();
-    }
-
-
-    public void onClick(View v) {
-        testSelect();
     }
 }
