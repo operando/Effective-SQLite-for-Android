@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,15 +16,19 @@ import com.operando.os.sqlitesample.databases.SQLiteSampleHelper;
 import com.operando.os.sqlitesample.databases.User;
 import com.operando.os.sqlitesample.model.Mode;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 
 public class SqliteSelectActivity extends Activity {
 
-    private static final String TAG = "Shibuya Java";
+    private static final String TAG = SqliteSelectActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sqlite_select);
+        ButterKnife.inject(this);
     }
 
     public static Mode createMode(Context context) {
@@ -31,8 +36,31 @@ public class SqliteSelectActivity extends Activity {
     }
 
 
+    @OnClick(R.id.sqlite_select_text)
     public void onClick(View v) {
         testSelect();
+    }
+
+    @OnClick(R.id.sqlite_select_record_count)
+    public void onRecordCount(View v) {
+        SQLiteSampleHelper ssh = new SQLiteSampleHelper(SqliteSelectActivity.this);
+        SQLiteDatabase sb = ssh.getWritableDatabase();
+        try {
+            long start = System.currentTimeMillis();
+            Cursor c = sb.query(User.TABLE_NAME, new String[]{"COUNT(*)",}, null, null, null, null, null);
+            Log.d(TAG, "Select Time : " + (System.currentTimeMillis() - start) + "ms");
+            Log.d(TAG, "===================================================");
+            if (c.moveToNext()) {
+                long recodeCount = c.getLong(0);
+                Log.d(TAG, "recodeCount : " + recodeCount);
+            }
+            Log.d(TAG, "getCount Time : " + (System.currentTimeMillis() - start) + "ms");
+            Log.d(TAG, "===================================================");
+            c.close();
+        } finally {
+            sb.close();
+            ssh.close();
+        }
     }
 
     private void testSelect() {
@@ -43,7 +71,7 @@ public class SqliteSelectActivity extends Activity {
                 SQLiteDatabase sb = ssh.getWritableDatabase();
                 try {
                     long start = System.currentTimeMillis();
-                    Cursor c = sb.query(User.TABLE_NAME, new String[]{User.UserColumns.ADDRESS,}, null, null, null, null, null);
+                    Cursor c = sb.query(User.TABLE_NAME, new String[]{User.UserColumns._ID, User.UserColumns.ADDRESS,}, null, null, null, null, null);
                     Log.d(TAG, "Select Time : " + (System.currentTimeMillis() - start) + "ms");
                     Log.d(TAG, "===================================================");
                     Log.d(TAG, c.getCount() + "");
@@ -57,5 +85,28 @@ public class SqliteSelectActivity extends Activity {
                 return null;
             }
         }.execute();
+    }
+
+    public static void dumpLastPosition(Cursor cursor) {
+        Log.d("dumpLastPosition", "===========================");
+        if (cursor != null) {
+            int startPosition = cursor.getPosition();
+            cursor.moveToPosition(-1);
+            if (cursor.moveToLast()) {
+                String[] columnNames = cursor.getColumnNames();
+                int length = columnNames.length;
+                for (int i = 0; i < length; i++) {
+                    String value;
+                    try {
+                        value = cursor.getString(i);
+                    } catch (SQLiteException e) {
+                        value = "<unprintable>";
+                    }
+                    Log.d("dumpLastPosition", columnNames[i] + " : " + value);
+                }
+            }
+            cursor.moveToPosition(startPosition);
+        }
+        Log.d("dumpLastPosition", "===========================");
     }
 }
