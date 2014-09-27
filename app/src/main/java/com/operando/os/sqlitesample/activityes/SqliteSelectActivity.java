@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
@@ -44,19 +45,12 @@ public class SqliteSelectActivity extends Activity {
     @OnClick(R.id.sqlite_select_record_count)
     public void onRecordCount(View v) {
         SQLiteSampleHelper ssh = new SQLiteSampleHelper(SqliteSelectActivity.this);
-        SQLiteDatabase sb = ssh.getWritableDatabase();
+        SQLiteDatabase sb = ssh.getReadableDatabase();
         try {
             long start = System.currentTimeMillis();
-            Cursor c = sb.query(User.TABLE_NAME, new String[]{"COUNT(*)",}, null, null, null, null, null);
-            Log.d(TAG, "Select Time : " + (System.currentTimeMillis() - start) + "ms");
-            Log.d(TAG, "===================================================");
-            if (c.moveToNext()) {
-                long recodeCount = c.getLong(0);
-                Log.d(TAG, "recodeCount : " + recodeCount);
-            }
+            Log.d(TAG, "recodeCount : " + DatabaseUtils.queryNumEntries(sb, User.TABLE_NAME));
             Log.d(TAG, "getCount Time : " + (System.currentTimeMillis() - start) + "ms");
             Log.d(TAG, "===================================================");
-            c.close();
         } finally {
             sb.close();
             ssh.close();
@@ -68,7 +62,7 @@ public class SqliteSelectActivity extends Activity {
             @Override
             protected Void doInBackground(Void... voids) {
                 SQLiteSampleHelper ssh = new SQLiteSampleHelper(SqliteSelectActivity.this);
-                SQLiteDatabase sb = ssh.getWritableDatabase();
+                SQLiteDatabase sb = ssh.getReadableDatabase();
                 try {
                     long start = System.currentTimeMillis();
                     Cursor c = sb.query(User.TABLE_NAME, new String[]{User.UserColumns._ID, User.UserColumns.ADDRESS,}, null, null, null, null, null);
