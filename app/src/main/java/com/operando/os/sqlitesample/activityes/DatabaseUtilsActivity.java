@@ -53,4 +53,9 @@ public class DatabaseUtilsActivity extends Activity {
             }
         }.execute();
     }
+
+    @OnClick(R.id.databases_utils_delete_database)
+    void onDeleteDatabase(View v) {
+        deleteDatabase(new SQLiteSampleHelper(this).getDatabaseName());
+    }
 }

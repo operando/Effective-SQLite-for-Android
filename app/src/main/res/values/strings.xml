@@ -13,4 +13,5 @@
     <string name="mode_activity_database_utils">DatabaseUtils</string>
 
     <string name="database_utils_dump_cursor">Dump Cursor</string>
+    <string name="database_utils_delete_database">Delete Database</string>
 </resources>
