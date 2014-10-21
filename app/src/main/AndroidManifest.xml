@@ -28,6 +28,10 @@
             android:name="com.operando.os.sqlitesample.activityes.SqliteInsertActivity"
             android:label="@string/title_activity_select_mode" >
         </activity>
+        <activity
+            android:name="com.operando.os.sqlitesample.activityes.OtherDatabaseActivity"
+            android:label="@string/title_activity_other_database" >
+        </activity>
     </application>
 
 </manifest>
