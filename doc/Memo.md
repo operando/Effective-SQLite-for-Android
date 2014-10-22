@@ -43,3 +43,34 @@ Cursorは行のコレクションを返却するわけではありません。
 Androidがリソースを効率的に使用出きるようになってます。
 
 多分、テーブルの行数が多ければ多いほど効果が高まりす。
+
+## Android OS Versionごとに内蔵されているSQLiteが違う
+
+**実際は、端末ごとに内蔵されているSQLiteが違う**
+
+* SQLite 3.8.4.3:
+ - 21-5.0-Lollipop
+ - 20-Android L Developer Preview
+
+* SQLite 3.7.11:
+ - 19-4.4-KitKat
+ - 18-4.3-Jelly Bean
+ - 17-4.2-Jelly Bean
+ - 16-4.1-Jelly Bean
+
+* SQLite 3.7.4:
+ - 15-4.0.3-Ice Cream Sandwich
+ - 14-4.0-Ice Cream Sandwich
+ - 13-3.2-Honeycomb
+ - 12-3.1-Honeycomb
+ - 11-3.0-Honeycomb
+
+* SQLite 3.6.22:
+ - 10-2.3.3-Gingerbread
+ - 9-2.3.1-Gingerbread
+ - 8-2.2-Froyo
+
+* SQLite 3.5.9:
+ - 7-2.1-Eclair
+ - 4-1.6-Donut
+ - 3-1.5-Cupcake
