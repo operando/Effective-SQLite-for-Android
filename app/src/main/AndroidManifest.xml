@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.operando.os.sqlitesample" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.operando.os.sqlitesample.activityes.SelectModeActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.operando.os.sqlitesample.activityes.SqliteSelectActivity"
+            android:label="@string/title_activity_sqlite_select" >
+        </activity>
+        <activity
+            android:name="com.operando.os.sqlitesample.activityes.DatabaseUtilsActivity"
+            android:label="@string/title_activity_database_utils" >
+        </activity>
+        <activity
+            android:name="com.operando.os.sqlitesample.activityes.SqliteInsertActivity"
+            android:label="@string/title_activity_select_mode" >
+        </activity>
+        <activity
+            android:name="com.operando.os.sqlitesample.activityes.OtherDatabaseActivity"
+            android:label="@string/title_activity_other_database" >
+        </activity>
+
+        <provider
+            android:name="com.operando.os.sqlitesample.providers.SQLiteSampleProvider"
+            android:authorities="sqlitesample"
+            android:enabled="true"
+            android:exported="false" >
+        </provider>
+    </application>
+
+</manifest>
