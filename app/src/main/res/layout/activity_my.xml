@@ -1,48 +1,58 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MyActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".MyActivity">
 
 
-    <CheckBox
-        android:id="@+id/in_memory"
-        android:text="In Memory"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/in_memory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="In Memory" />
 
-    <Button
-        android:id="@+id/execsql"
-        android:onClick="onExecSQL"
-        android:text="execSQL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/execsql"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onExecSQL"
+            android:text="execSQL" />
 
-    <Button
-        android:id="@+id/insert"
-        android:onClick="onInsert"
-        android:text="insert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/insert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onInsert"
+            android:text="insert" />
 
-    <Button
-        android:id="@+id/transaction"
-        android:onClick="onTransaction"
-        android:text="Transaction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/transaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onTransaction"
+            android:text="Transaction" />
 
-    <Button
-        android:id="@+id/compilestatement"
-        android:onClick="onCompileStatement"
-        android:text="compileStatement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/compilestatement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCompileStatement"
+            android:text="compileStatement" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/compilestatement_unique"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCompileStatement"
+            android:text="Unique compileStatement" />
+
+    </LinearLayout>
+</layout>

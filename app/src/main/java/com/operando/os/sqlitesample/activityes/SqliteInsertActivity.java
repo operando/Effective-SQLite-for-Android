@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.CompoundButton;
 import com.operando.os.sqlitesample.R;
 import com.operando.os.sqlitesample.databases.SQLiteSampleHelper;
 import com.operando.os.sqlitesample.databases.User;
+import com.operando.os.sqlitesample.databinding.ActivityMyBinding;
 import com.operando.os.sqlitesample.model.Mode;
 
 import butterknife.ButterKnife;
@@ -30,7 +32,7 @@ public class SqliteInsertActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my);
+        ActivityMyBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_my);
         ButterKnife.inject(this);
 
 //        NO！
@@ -39,6 +41,33 @@ public class SqliteInsertActivity extends Activity {
 
 //        NO！
 //        SQLiteDatabase db = openOrCreateDatabase("app.db", Context.MODE_PRIVATE, null);
+
+        binding.compilestatementUnique.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SQLiteSampleHelper ssh = new SQLiteSampleHelper(SqliteInsertActivity.this, inMemory);
+                SQLiteDatabase sb = ssh.getWritableDatabase();
+
+                long start = System.currentTimeMillis();
+
+                SQLiteStatement stat = sb.compileStatement("INSERT INTO " + User.TABLE_NAME_UNIQUE + "(" + User.UserColumns.ADDRESS + ") VALUES(?)");
+                try {
+                    sb.beginTransaction();
+                    for (int i = 0; i < DATASIZE; i++) {
+                        stat.bindString(1, "test" + i + "test.com");
+                        stat.executeInsert();
+                    }
+                    sb.setTransactionSuccessful();
+                    Log.d(TAG, (System.currentTimeMillis() - start) + "ms");
+                    Log.d(TAG, "onCompileStatement===================================================");
+                    Log.d(TAG, "onCompileStatement===================================================");
+                } finally {
+                    sb.endTransaction();
+                    sb.close();
+                    ssh.close();
+                }
+            }
+        });
     }
 
     public static Mode createMode(Context context) {

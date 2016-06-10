@@ -70,6 +70,13 @@ public class SqliteSelectActivity extends Activity {
         select(query, address);
     }
 
+    @OnClick(R.id.sqlite_select_unique_column_limit)
+    public void onUniqueColumnLimit(View v) {
+        String address = "test20000test.com";
+        String query = "SELECT * FROM " + User.TABLE_NAME_UNIQUE + " WHERE " + User.UserColumns.ADDRESS + " = ?";
+        select(query, address);
+    }
+
     private void testSelect() {
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -131,6 +138,7 @@ public class SqliteSelectActivity extends Activity {
             long endCount = System.currentTimeMillis();
             Log.d(TAG, "getCount Time : " + (endCount - startCount) + "ms");
             Log.d(TAG, "===================================================");
+            DatabaseUtils.dumpCursor(c);
             c.close();
         } finally {
             sb.close();

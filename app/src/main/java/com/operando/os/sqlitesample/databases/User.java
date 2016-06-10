@@ -6,6 +6,7 @@ import android.provider.BaseColumns;
 public class User {
 
     public static final String TABLE_NAME = "users";
+    public static final String TABLE_NAME_UNIQUE = "users_unique";
 
     public static final Uri CONTENT_URI = Uri.parse("content://users");
 

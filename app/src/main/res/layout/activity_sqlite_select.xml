@@ -1,36 +1,45 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.operando.os.sqlitesample.activityes.SqliteSelectActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/sqlite_select_text"
-        android:text="Test Select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.operando.os.sqlitesample.activityes.SqliteSelectActivity">
 
-    <Button
-        android:id="@+id/sqlite_select_record_count"
-        android:text="Record Count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/sqlite_select_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Select" />
 
-    <Button
-        android:id="@+id/sqlite_select_no_limit"
-        android:text="No Limit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/sqlite_select_record_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Record Count" />
 
-    <Button
-        android:id="@+id/sqlite_select_limit"
-        android:text="Limit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/sqlite_select_no_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Limit" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/sqlite_select_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Limit" />
+
+        <Button
+            android:id="@+id/sqlite_select_unique_column_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNIQUE Column Limit" />
+
+    </LinearLayout>
+</layout>

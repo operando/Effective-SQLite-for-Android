@@ -13,6 +13,11 @@ public class SQLiteSampleHelper extends SQLiteOpenHelper {
                     User.UserColumns._ID + "  INTEGER PRIMARY KEY AUTOINCREMENT," +
                     User.UserColumns.ADDRESS + " TEXT);"; //UNIQUE);";
 
+    private static final String USER_ADDRESS_UNIQUE_TABLE_CREATE =
+            "CREATE TABLE " + User.TABLE_NAME_UNIQUE + " (" +
+                    User.UserColumns._ID + "  INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    User.UserColumns.ADDRESS + " TEXT UNIQUE);";
+
 
     public SQLiteSampleHelper(Context context) {
         this(context, false);
@@ -25,6 +30,7 @@ public class SQLiteSampleHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(USER_TABLE_CREATE);
+        db.execSQL(USER_ADDRESS_UNIQUE_TABLE_CREATE);
     }
 
     @Override
