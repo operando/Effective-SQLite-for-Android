@@ -58,14 +58,14 @@ public class SqliteSelectActivity extends Activity {
 
     @OnClick(R.id.sqlite_select_no_limit)
     public void onNoLimit(View v) {
-        String address = "test500test.com";
+        String address = "test5000test.com";
         String query = "SELECT * FROM " + User.TABLE_NAME + " WHERE " + User.UserColumns.ADDRESS + " = ?";
         select(query, address);
     }
 
     @OnClick(R.id.sqlite_select_limit)
     public void onLimit(View v) {
-        String address = "test500test.com";
+        String address = "test5000test.com";
         String query = "SELECT * FROM " + User.TABLE_NAME + " WHERE " + User.UserColumns.ADDRESS + " = ? limit 1";
         select(query, address);
     }
