@@ -59,7 +59,7 @@ public class SqliteInsertActivity extends Activity {
         try {
             sb.beginTransaction();
             for (int i = 0; i < DATASIZE; i++) {
-                sb.execSQL("INSERT INTO " + User.TABLE_NAME + " (" + User.UserColumns.ADDRESS + ") VALUES(\"test" + i + "@test.com\");");
+                sb.execSQL("INSERT INTO " + User.TABLE_NAME + " (" + User.UserColumns.ADDRESS + ") VALUES(\"test" + i + "test.com\");");
             }
             Log.d(TAG, (System.currentTimeMillis() - start) + "ms");
             Log.d(TAG, "onExecSQL===================================================");
@@ -78,7 +78,7 @@ public class SqliteInsertActivity extends Activity {
         ContentValues cv = new ContentValues();
         try {
             for (int i = 0; i < DATASIZE; i++) {
-                cv.put(User.UserColumns.ADDRESS, "test" + i + "@test.com");
+                cv.put(User.UserColumns.ADDRESS, "test" + i + "test.com");
                 sb.insertOrThrow(User.TABLE_NAME, null, cv);
             }
             Log.d(TAG, (System.currentTimeMillis() - start) + "ms");
@@ -100,7 +100,7 @@ public class SqliteInsertActivity extends Activity {
         try {
             sb.beginTransaction();
             for (int i = 0; i < DATASIZE; i++) {
-                cv.put(User.UserColumns.ADDRESS, "test" + i + "@test.com");
+                cv.put(User.UserColumns.ADDRESS, "test" + i + "test.com");
                 sb.insertOrThrow(User.TABLE_NAME, null, cv);
             }
             sb.setTransactionSuccessful();
@@ -124,7 +124,7 @@ public class SqliteInsertActivity extends Activity {
         try {
             sb.beginTransaction();
             for (int i = 0; i < DATASIZE; i++) {
-                stat.bindString(1, "test" + i + "@test.com");
+                stat.bindString(1, "test" + i + "test.com");
                 stat.executeInsert();
             }
             sb.setTransactionSuccessful();

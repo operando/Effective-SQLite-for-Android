@@ -36,7 +36,6 @@ public class SqliteSelectActivity extends Activity {
         return new Mode(new Intent(context, SqliteSelectActivity.class), context.getString(R.string.mode_activity_sqlite_select));
     }
 
-
     @OnClick(R.id.sqlite_select_text)
     public void onClick(View v) {
         testSelect();
@@ -55,6 +54,20 @@ public class SqliteSelectActivity extends Activity {
             sb.close();
             ssh.close();
         }
+    }
+
+    @OnClick(R.id.sqlite_select_no_limit)
+    public void onNoLimit(View v) {
+        String address = "test500test.com";
+        String query = "SELECT * FROM " + User.TABLE_NAME + " WHERE " + User.UserColumns.ADDRESS + " = ?";
+        select(query, address);
+    }
+
+    @OnClick(R.id.sqlite_select_limit)
+    public void onLimit(View v) {
+        String address = "test500test.com";
+        String query = "SELECT * FROM " + User.TABLE_NAME + " WHERE " + User.UserColumns.ADDRESS + " = ? limit 1";
+        select(query, address);
     }
 
     private void testSelect() {
@@ -102,5 +115,26 @@ public class SqliteSelectActivity extends Activity {
             cursor.moveToPosition(startPosition);
         }
         Log.d("dumpLastPosition", "===========================");
+    }
+
+    private void select(String query, String address) {
+        SQLiteSampleHelper ssh = new SQLiteSampleHelper(SqliteSelectActivity.this);
+        SQLiteDatabase sb = ssh.getReadableDatabase();
+        try {
+            long startQuery = System.currentTimeMillis();
+            Cursor c = sb.rawQuery(query, new String[]{address});
+            long endQuery = System.currentTimeMillis();
+            Log.d(TAG, "Select Time : " + (endQuery - startQuery) + "ms");
+            Log.d(TAG, "===================================================");
+            long startCount = System.currentTimeMillis();
+            c.getCount();
+            long endCount = System.currentTimeMillis();
+            Log.d(TAG, "getCount Time : " + (endCount - startCount) + "ms");
+            Log.d(TAG, "===================================================");
+            c.close();
+        } finally {
+            sb.close();
+            ssh.close();
+        }
     }
 }
