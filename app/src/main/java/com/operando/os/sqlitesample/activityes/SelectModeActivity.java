@@ -32,6 +32,7 @@ public class SelectModeActivity extends Activity {
         list.add(SqliteSelectActivity.createMode(this));
         list.add(DatabaseUtilsActivity.createMode(this));
         list.add(OtherDatabaseActivity.createMode(this));
+        list.add(InMemoryDbActivity.createMode(this));
         mModeList.setAdapter(new SelectModeListAdapter(this, list));
         mModeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

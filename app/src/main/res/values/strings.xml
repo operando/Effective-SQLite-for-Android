@@ -14,10 +14,12 @@
     <string name="mode_activity_sqlite_insert">SQLite Insert</string>
     <string name="mode_activity_database_utils">DatabaseUtils</string>
     <string name="mode_activity_other_database">Other Database</string>
+    <string name="mode_activity_in_memory_database">In Memory Database</string>
 
     <string name="database_utils_dump_cursor">Dump Cursor</string>
     <string name="database_utils_delete_database">Delete Database</string>
 
     <string name="other_database_sqlite_version">SQLite Version</string>
+    <string name="title_activity_in_memory_db">InMemoryDbActivity</string>
 
 </resources>
